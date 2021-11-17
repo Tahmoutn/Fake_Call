@@ -1,0 +1,70 @@
+import 'package:callkeep/callkeep.dart';
+import 'package:facebook_audience_network/facebook_audience_network.dart';
+import 'package:fake_call/UI/Home.dart';
+import 'package:fake_call/UI/Intro/Intro.dart';
+import 'package:fake_call/constants.dart';
+import 'package:fake_call/providers/IntroProvider.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:provider/provider.dart';
+
+const String testDevice = "0678FAC4D811712233442CD6430E5A76";
+final FlutterCallkeep callKeep = FlutterCallkeep();
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  FacebookAudienceNetwork.init(testingId: "662b7773-387e-439c-8a4b-a8971c4b2159");
+
+  runApp(
+      MultiProvider(
+        providers:[
+          ChangeNotifierProvider(create: (_)=> IntroProvider())
+        ],
+        child: MyApp(),
+      )
+  );
+}
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    SystemChrome.setSystemUIOverlayStyle(new SystemUiOverlayStyle(
+      statusBarColor: Colors.white,
+      systemNavigationBarColor: Colors.white,
+      statusBarIconBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.light,
+      systemNavigationBarDividerColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.light,
+      systemNavigationBarContrastEnforced: true,
+    ));
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: APPLICATION_NAME,
+      theme: ThemeData(
+        canvasColor: Colors.white,
+        accentColor: Colors.green,
+        primarySwatch: Colors.green,
+      ),
+      home: MyHomePage(title: APPLICATION_NAME),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Intro();
+  }
+}

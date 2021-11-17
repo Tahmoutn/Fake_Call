@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "731246917706",
+    "project_id": "fake-call-6dbc0",
+    "storage_bucket": "fake-call-6dbc0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731246917706:android:1aa81f6f57b1be35724eb3",
+        "android_client_info": {
+          "package_name": "com.tahmoutn.fake_call"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731246917706-6jpm4du027fsvend92bprkg8lssm2kib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tahmoutn.fake_call",
+            "certificate_hash": "0175073b573df415a65b944c8d2be899a3c10fd1"
+          }
+        },
+        {
+          "client_id": "731246917706-ks7t0pdhgr9d9hvvm8vnfppk2uhu0vvk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9c7CVFiX_yCiQ3R17TH4OkALDropK1w4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731246917706-ks7t0pdhgr9d9hvvm8vnfppk2uhu0vvk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
