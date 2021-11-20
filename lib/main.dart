@@ -6,7 +6,6 @@ import 'package:fake_call/constants.dart';
 import 'package:fake_call/providers/IntroProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 
 const String testDevice = "0678FAC4D811712233442CD6430E5A76";
@@ -63,8 +62,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  bool acceptingAgreementState = false;
+
+  @override
+  void didChangeDependencies() {
+    IntroProvider().getAcceptingAgreementState().then((value) => acceptingAgreementState = value);
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Intro();
+    return acceptingAgreementState ? Intro() : Home() ;
   }
 }
