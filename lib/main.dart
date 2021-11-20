@@ -67,12 +67,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void didChangeDependencies() {
-    IntroProvider().getAcceptingAgreementState().then((value) => acceptingAgreementState = value);
+    IntroProvider().getAcceptingAgreementState().then((value) => setState((){
+      acceptingAgreementState = value;
+      print(value);
+    }));
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    return acceptingAgreementState ? Intro() : Home() ;
+    return acceptingAgreementState ? Home() :  Intro();
   }
 }

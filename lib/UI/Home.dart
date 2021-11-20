@@ -20,6 +20,7 @@ import 'package:fake_call/View/ShowCallSheet.dart';
 import 'package:fake_call/model/Call.dart';
 import 'package:fake_call/model/ListCallModel.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 const iOSLocalizedLabels = false;
 
@@ -514,8 +515,11 @@ class _MyAppState extends State<Home> {
               label: Text("Make it now"),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
-              onPressed: () {
+              onPressed: () async{
                 _buildSpeedDial(context);
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.setBool(ACCEPTING_AGREEMENT,false);
+
                 if(isExtended){
                   setState(() {
                     isExtended = false;
