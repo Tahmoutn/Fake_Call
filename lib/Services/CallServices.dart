@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:callkeep/callkeep.dart';
+import 'package:fake_call/Services/PermissionsHandler.dart';
 import 'package:fake_call/model/Call.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,22 +16,6 @@ class DisplayCall {
   Future<Map> displayCall(String number) async {
     final String callUUID = newUUID();
     calls[callUUID] = Call(number);
-    final bool hasPhoneAccount = await _callKeep.hasPhoneAccount();
-    if (!hasPhoneAccount) {
-      await _callKeep.hasDefaultPhoneAccount( context, <String, dynamic>{
-        'alertTitle': 'Permissions required',
-        'alertDescription':
-        'This application needs to access your phone accounts',
-        'cancelButton': 'Cancel',
-        'okButton': 'ok',
-        'foregroundService': {
-          'channelId': 'com.company.my',
-          'channelName': 'Foreground service for my app',
-          'notificationTitle': 'My app is running on background',
-          'notificationIcon': 'Path to the resource icon of the notification',
-        },
-      });
-    }
 
     _callKeep.displayIncomingCall(callUUID, number,
         handleType: 'number', hasVideo: false);
@@ -49,7 +34,7 @@ class DisplayCall {
   void didDisplayIncomingCall(CallKeepDidDisplayIncomingCall event) {
     var callUUID = event.callUUID;
     var number = event.handle;
-
+    print('after 20 seconds');
     calls[callUUID] = Call(number);
   }
 

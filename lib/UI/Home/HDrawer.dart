@@ -1,6 +1,4 @@
-import 'package:fake_call/notifications/notifications_api.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:share/share.dart';
 
@@ -31,11 +29,8 @@ class _HDrawerState extends State<HDrawer> {
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          width: 20,
-                        ),
                         Image.asset(
                           'assets/images/favicon.png',
                           width: 40,
@@ -82,7 +77,10 @@ class _HDrawerState extends State<HDrawer> {
                       ],
                     ),
                   ),
-                  Divider(),
+                  Divider(
+                    indent: 30,
+                    endIndent: 30,
+                  ),
                   ListTile(
                     trailing: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -161,25 +159,17 @@ class _HDrawerState extends State<HDrawer> {
                           bottomRight: Radius.circular(30),
                         )),
                   ),
-                  Divider(),
-                  Spacer(),
-                  TextButton(onPressed: (){
-                    NotificationApi.showNotification(
-                        title : 'Sarah abs',
-                        body : 'Hi there, there is a new call you have received after 30 second',
-                        payload : 'sarah.abs'
-                    );
-                  }, child: Text('Show notification now')),
-                  TextButton(onPressed: (){
-                    // NotificationApi.showScheduledNotification(
-                    //   title : 'You have an incoming fake call after 5 min',
-                    //   body : 'Tap for more options.',
-                    //   payload : 'fake call',
-                    //   scheduledDate: DateTime.now().add(Duration(seconds: 10)),
-                    //   //time: Time(2,22)
-                    // );
-                  }, child: Text('Show notification after 12 seconds')),
-                  Divider(),
+                  Divider(
+                    indent: 30,
+                    endIndent: 30,
+                  ),
+                  Spacer(
+                  ),
+                  Divider(
+                    indent: 30,
+                    endIndent: 30,
+                    thickness: 1,
+                  ),
                   Padding(
                     padding: EdgeInsets.only(
                         bottom: MediaQuery.of(context).size.height * 0.04,

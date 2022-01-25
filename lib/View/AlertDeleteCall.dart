@@ -1,11 +1,11 @@
 import 'package:fake_call/database/HistoryDatabase.dart';
 import 'package:fake_call/database/database.dart';
-import 'package:fake_call/model/ListCallModel.dart';
+import 'package:fake_call/model/DataBaseModel.dart';
 import 'package:fake_call/constants.dart';
 import 'package:flutter/material.dart';
 
 class AlertDeleteCall extends StatefulWidget {
-  final ListCallModel call;
+  final DataBaseModel call;
   final String db;
   AlertDeleteCall(this.db,this.call);
 
@@ -59,7 +59,7 @@ class _AlertDeleteCallState extends State<AlertDeleteCall> {
         MaterialButton(
           color: Colors.green,
           onPressed: () async{
-            deleteCall(widget.db,widget.call);
+            deleteCall(widget.call);
             Navigator.of(context).pop(true);
           },
           child: Text('Yes. delete it',style: TextStyle(
@@ -70,20 +70,9 @@ class _AlertDeleteCallState extends State<AlertDeleteCall> {
     );
   }
 
-  Future deleteCall(String db,ListCallModel call) async{
-      switch(db){
-        case MAIN_DB:{
-          await DatabaseHelper().db;
-          var dbHelper =  DatabaseHelper();
-          await dbHelper.deleteCall(call);
-          break;
-        }
-        case HISTORY_DB:{
-          await HistoryDatabase().db;
-          var hdbHelper =  HistoryDatabase();
-          await hdbHelper.deleteCall(call);
-          break;
-        }
-      }
+  Future deleteCall(DataBaseModel call) async{
+    await DatabaseHelper().db;
+    var dbHelper =  DatabaseHelper();
+    await dbHelper.deleteCall(call);
   }
 }

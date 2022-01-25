@@ -1,6 +1,4 @@
-import 'package:facebook_audience_network/facebook_audience_network.dart';
-import 'package:fake_call/UI/History.dart';
-import 'package:fake_call/monetization/AdsManager.dart';
+import 'package:fake_call/UI/log.dart';
 import 'package:fake_call/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +7,8 @@ class HAppBar extends StatelessWidget implements PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      elevation: 0,
+      shadowColor: Colors.green.withOpacity(0.05),
+      elevation: 5,
       backgroundColor: Colors.white,
       centerTitle: true,
       actions: [
@@ -19,35 +18,35 @@ class HAppBar extends StatelessWidget implements PreferredSizeWidget{
             height: 30,
             width: 40,
             child: Tooltip(
-              message: 'Open history calls',
+              message: 'Call log',
               child: InkWell(
-                highlightColor: Color(0xFF66BB6A),
+                highlightColor: Colors.green.shade100,
                 borderRadius: BorderRadius.circular(30),
                 onTap: () async {
-                  // TODO ASD HERE
                   await Navigator.of(context)
                       .push(MaterialPageRoute(
                       builder: (context) {
-                        try{
-                          FacebookInterstitialAd.loadInterstitialAd(
-                            placementId: getMainInterstitialAdUnitId(),
-                            listener: (result, value){
-                              AdsManager().listener(result, value);
-                            },
-                          );
-                        }catch(e){
-
-                        }
-                        return History();
-                      } ))
-                      .then((value){
-                    AdsManager().showAds();
-                  });
+                        return Log();
+                      }),
+                  );
                 },
                 child: Icon(
-                  Icons.settings_rounded,
+                  Icons.history_rounded,
                   color: Colors.green,
                 ),
+                // Column(
+                //   children: [
+                //     Icon(
+                //       Icons.history_rounded,
+                //       color: Colors.green,
+                //     ),
+                //     Text('Call log',
+                //       style: TextStyle(
+                //           fontSize: 10,
+                //           color: Colors.green
+                //       ),),
+                //   ],
+                // ),
               ),
             ),
           ),
@@ -59,9 +58,9 @@ class HAppBar extends StatelessWidget implements PreferredSizeWidget{
           height: 30,
           width: 40,
           child: Tooltip(
-            message: 'Open settings',
+            message: 'Menu',
             child: InkWell(
-              highlightColor: Color(0xFF66BB6A),
+              highlightColor: Colors.green.shade100,
               borderRadius: BorderRadius.circular(30),
               onTap: () async {
                 Scaffold.of(context).openDrawer();
@@ -70,13 +69,28 @@ class HAppBar extends StatelessWidget implements PreferredSizeWidget{
                 Icons.menu_rounded,
                 color: Colors.green,
               ),
+              // Column(
+              //   children: [
+              //     Icon(
+              //       Icons.menu_rounded,
+              //       color: Colors.green,
+              //     ),
+              //     Text('Menu',
+              //       style: TextStyle(
+              //           fontSize: 10,
+              //           color: Colors.green
+              //       ),),
+              //   ],
+              // ),
             ),
           ),
         ),
       ),
       title: Text( APPLICATION_NAME ,
         style: TextStyle(color: Colors.green,
-            fontFamily: 'myFont'),
+            fontFamily: 'myFont',
+            letterSpacing: 4,
+            fontWeight: FontWeight.w400),
       ),
     );
   }

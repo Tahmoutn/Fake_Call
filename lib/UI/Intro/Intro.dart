@@ -1,4 +1,4 @@
-import 'package:fake_call/UI/Home.dart';
+import 'package:fake_call/UI/Home/Home.dart';
 import 'package:fake_call/UI/Intro/FirstPage.dart';
 import 'package:fake_call/UI/Intro/SecondPage.dart';
 import 'package:fake_call/providers/IntroProvider.dart';
@@ -182,20 +182,6 @@ class _IntroState extends State<Intro> with SingleTickerProviderStateMixin{
                   ],
                 ),
               )
-              // TabBar(
-              //   unselectedLabelColor: Colors.black,
-              //   labelColor: Colors.red,
-              //   tabs: [
-              //     Tab(
-              //       text: '1st tab',
-              //     ),
-              //     Tab(
-              //       text: '2 nd tab',
-              //     )
-              //   ],
-              //   controller: _tabController,
-              //   indicatorSize: TabBarIndicatorSize.tab,
-              // ),
             ],
           ),
         ),

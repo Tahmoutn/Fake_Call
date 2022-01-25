@@ -1,11 +1,12 @@
 import 'package:callkeep/callkeep.dart';
-import 'package:facebook_audience_network/facebook_audience_network.dart';
-import 'package:fake_call/UI/Home.dart';
+import 'package:fake_call/UI/Home/Home.dart';
 import 'package:fake_call/UI/Intro/Intro.dart';
 import 'package:fake_call/constants.dart';
+import 'package:fake_call/providers/HomeProvider.dart';
 import 'package:fake_call/providers/IntroProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_applovin_max/flutter_applovin_max.dart';
 import 'package:provider/provider.dart';
 
 const String testDevice = "0678FAC4D811712233442CD6430E5A76";
@@ -13,12 +14,14 @@ final FlutterCallkeep callKeep = FlutterCallkeep();
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  FacebookAudienceNetwork.init(testingId: "662b7773-387e-439c-8a4b-a8971c4b2159");
+  FlutterApplovinMax.initSDK();
+
 
   runApp(
       MultiProvider(
         providers:[
-          ChangeNotifierProvider(create: (_)=> IntroProvider())
+          ChangeNotifierProvider(create: (_)=> IntroProvider()),
+          ChangeNotifierProvider(create: (_)=> HomeProvider())
         ],
         child: MyApp(),
       )
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     SystemChrome.setSystemUIOverlayStyle(new SystemUiOverlayStyle(
-      statusBarColor: Colors.white,
+      statusBarColor: Colors.transparent,
       systemNavigationBarColor: Colors.white,
       statusBarIconBrightness: Brightness.dark,
       statusBarBrightness: Brightness.light,
@@ -63,19 +66,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  bool acceptingAgreementState = false;
+  bool acceptingAgreementState = true;
 
   @override
   void didChangeDependencies() {
     IntroProvider().getAcceptingAgreementState().then((value) => setState((){
       acceptingAgreementState = value;
-      print(value);
     }));
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    return acceptingAgreementState ? Home() :  Intro();
+     return acceptingAgreementState ? Home() : Intro();
   }
 }

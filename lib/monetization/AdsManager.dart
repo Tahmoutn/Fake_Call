@@ -1,172 +1,86 @@
-import 'dart:io';
 
-import 'package:facebook_audience_network/facebook_audience_network.dart';
+import 'package:flutter_applovin_max/flutter_applovin_max.dart';
 
 class AdsManager {
 
-  bool showAdsCond = true;
-
-   void listener (result, value ){
-     switch (result) {
-       case BannerAdResult.ERROR:
-         print("Error: $value");
+   void listener (AppLovinAdListener adListener){
+     switch (adListener) {
+       case AppLovinAdListener.adLoadFailed:
+         print("Error to loadAd: $adListener");
          break;
-       case BannerAdResult.LOADED:
-         print("Loaded: $value");
+       case AppLovinAdListener.adLoaded:
+         print("Loaded ad successfully: $adListener");
          break;
-       case BannerAdResult.CLICKED:
-         print("Clicked: $value");
+       case AppLovinAdListener.adDisplayed:
+         print("adDisplayed successfully: $adListener");
          break;
-       case BannerAdResult.LOGGING_IMPRESSION:
-         print("Logging Impression: $value");
+       case AppLovinAdListener.adClicked:
+         print("adClicked successfully: $adListener");
+         break;
+       case AppLovinAdListener.adHidden:
+         print("adHidden: $adListener");
+         break;
+       case AppLovinAdListener.onAdDisplayFailed:
+         print("onAdDisplayFailed: $adListener");
+         break;
+       case AppLovinAdListener.onRewardedVideoStarted:
+         print("onRewardedVideoStarted: $adListener");
+         break;
+       case AppLovinAdListener.onRewardedVideoCompleted:
+         print("onRewardedVideoCompleted: $adListener");
+         break;
+       case AppLovinAdListener.onUserRewarded:
+         print("👍 onUserRewarded: $adListener");
          break;
      }
    }
 
-    initMainInterstitial(){
-      FacebookInterstitialAd.loadInterstitialAd(
-       placementId: getMainInterstitialAdUnitId(),listener: (result,value){
-         listener(result, value);
-        }
-     );
-  }
-
-    initDoneInterstitial(){
-      FacebookInterstitialAd.loadInterstitialAd(
-        placementId: getDoneInterstitialAdUnitId(),listener: (result,value){
-        listener(result, value);
-         }
-      );
-   }
-
-   Future<bool> loadAds() async{
-     return await FacebookInterstitialAd.loadInterstitialAd(
-         placementId: getDoneInterstitialAdUnitId(),
-         listener: (result,value){
-          listener(result, value);
-         }
-     );
-   }
-
-   void showAds() async {
-     if (showAdsCond) {
-       FacebookInterstitialAd.showInterstitialAd();
-       showAdsCond = false;
-       Future.delayed(new Duration(seconds: 30), () {
-           showAdsCond = true;
-       });
-     }
-   }
-
+  //  showInterstitialAd(){
+  //     final interstitialAd = InterstitialAd(getMainInterstitialAdUnitId());
+  //     interstitialAd.listener = InterstitialAdListener(
+  //       onLoaded: () {
+  //         interstitialAd.show();
+  //       },
+  //       onDismissed: () {
+  //         interstitialAd.destroy();
+  //         print('Interstitial dismissed');
+  //       },
+  //     );
+  //     interstitialAd.load();
+  // }
 }
 
 
-String mainActivityBannerAdUnitId() {
-  if (Platform.isIOS) {
-    return 'Test -- ca-app-pub-3940256099942544/2934735716';
-  } else if (Platform.isAndroid) {
-    return '1866713713479068_1867249276758845';
-  }
-  return null;
+String mainBannerAdUnitId() {
+  return 'be884c66244bc5f8';
 }
 
-String historyActivityBannerAdUnitId() {
-  if (Platform.isIOS) {
-    return 'Test -- ca-app-pub-3940256099942544/2934735716';
-  } else if (Platform.isAndroid) {
-    return '1866713713479068_1867169586766814';
-  }
-  return null;
+String historiesBannerAdUnitId() {
+  return 'be884c66244bc5f8';
 }
 
-String callNowBannerAdUnitId(){
-  if (Platform.isIOS) {
-    return 'Test -- ca-app-pub-3940256099942544/2934735716';
-  } else if (Platform.isAndroid) {
-    return '1866713713479068_1867163543434085';
-  }
-  return null;
+String momentBannerAdUnitId(){
+  return 'be884c66244bc5f8';
 }
 
-String getMainInterstitialAdUnitId() {
-  if (Platform.isIOS) {
-    return 'Test -- ca-app-pub-3940256099942544/2934735716';
-  } else if (Platform.isAndroid) {
-    return '1866713713479068_1867240650093041';
-  }
-  return null;
+String interstitialAdUnitId() {
+  return '610f3fc458d89381';
 }
 
-String getDoneInterstitialAdUnitId() {
-  if (Platform.isIOS) {
-    return 'Test -- ca-app-pub-3940256099942544/2934735716';
-  } else if (Platform.isAndroid) {
-    return '1866713713479068_1867242503426189';
-  }
-  return null;
+String videoInterstitialAdUnitId() {
+  return '1866713713479068_1867242503426189';
 }
 
+// Testing ad units for Admob only ...
 
-// String getNativeAdUnitId() {
-//   if (Platform.isIOS) {
-//     return 'ca-app-pub-3940256099942544/1712485313';
-//   } else if (Platform.isAndroid) {
-//     return "ca-app-pub-3940256099942544/2247696110";
-//   }
-//   return null;
-// }
-
-String testMainActivityBannerAdUnitId() {
-  if (Platform.isIOS) {
-    return 'ca-app-pub-3940256099942544/2934735716';
-  } else if (Platform.isAndroid) {
-    return 'ca-app-pub-3940256099942544/6300978111';
-  }
-  return null;
+String testBannerAdUnitId() {
+  return 'ca-app-pub-3940256099942544/6300978111';
 }
 
-String testHistoryActivityBannerAdUnitId() {
-  if (Platform.isIOS) {
-    return 'ca-app-pub-3940256099942544/2934735716';
-  } else if (Platform.isAndroid) {
-    return 'ca-app-pub-3940256099942544/6300978111';
-  }
-  return null;
+String testInterstitialAdUnitId() {
+  return 'ca-app-pub-3940256099942544/1033173712';
 }
 
-String testCallNowBannerAdUnitId(){
-  if (Platform.isIOS) {
-    return 'ca-app-pub-3940256099942544/2934735716';
-  } else if (Platform.isAndroid) {
-    return 'ca-app-pub-3940256099942544/6300978111';
-  }
-  return null;
-}
-
-String testGetMainInterstitialAdUnitId() {
-  if (Platform.isIOS) {
-    return 'ca-app-pub-3940256099942544/4411468910';
-  } else if (Platform.isAndroid) {
-    return 'ca-app-pub-3940256099942544/1033173712';
-  }
-  return null;
-}
-
-String testGetDoneInterstitialAdUnitId() {
-  if (Platform.isIOS) {
-    return 'ca-app-pub-3940256099942544/4411468910';
-  } else if (Platform.isAndroid) {
-    return 'ca-app-pub-3940256099942544/8691691433';
-  }
-  return null;
-}
-
-
-String testGetNativeAdUnitId() {
-  if (Platform.isIOS) {
-    return 'ca-app-pub-3940256099942544/1712485313';
-  } else if (Platform.isAndroid) {
-    return "ca-app-pub-3940256099942544/2247696110";
-  }
-  return null;
+String testVideoInterstitialAdUnitId() {
+  return 'ca-app-pub-3940256099942544/8691691433';
 }

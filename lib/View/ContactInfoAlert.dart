@@ -9,7 +9,8 @@ class _ContactInfoAlertState extends State<ContactInfoAlert> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Colors.amber,
+      elevation: 50,
+      backgroundColor: Colors.white,
       actionsPadding: const EdgeInsets.only(right: 14,bottom: 10),
       contentPadding: const EdgeInsets.only(top: 20,right: 20,left: 20),
       title: Row(
@@ -17,11 +18,11 @@ class _ContactInfoAlertState extends State<ContactInfoAlert> {
         children: [
           Text('Contact information!',
           style: TextStyle(
-            fontFamily: 'Lato-Thin',
+            fontFamily: 'MyFont',
             fontSize: 20,
             fontWeight: FontWeight.w600
           ),),
-          Icon(Icons.lightbulb_outline_rounded,color: Colors.white,)
+          Icon(Icons.lightbulb_outline_rounded,color: Colors.green,)
         ],
       ),
       content: RichText(
@@ -51,13 +52,13 @@ class _ContactInfoAlertState extends State<ContactInfoAlert> {
       ),
       actions: [
         MaterialButton(
-          color: Colors.white,
+          color: Colors.green.shade50,
           onPressed: (){
             Navigator.of(context).pop();
           },
           child: Text('Ok. I got it',
           style: TextStyle(
-            fontFamily: 'Lato-Thin',
+            color: Colors.green,
             fontWeight: FontWeight.w600
           ),),
         ),

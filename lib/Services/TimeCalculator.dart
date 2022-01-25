@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-class TimeCalculator{
+class TimeCalculator {
+
+
   String calculate ([TimeOfDay tod]){
     TimeOfDay now = TimeOfDay.now();
     if(tod == now){
@@ -68,7 +70,7 @@ class TimeCalculator{
       if(tod.minute > now.minute){
         minutes = tod.minute-now.minute;
       }else if(tod.minute != now.minute){
-        var a = 60;
+        var a = TimeOfDay.minutesPerHour;
         var b = a - now.minute;
         minutes = b + tod.minute;
       }else{
@@ -94,4 +96,53 @@ class TimeCalculator{
       return format;
     }
   }
+
+  bool isNegative(String timeFromDb){
+    TimeOfDay timeOfDay = TimeOfDay(hour: int.parse('${timeFromDb.substring(10,12)}'), minute: int.parse('${timeFromDb.substring(13,15)}'));
+    if(timeOfDay == TimeOfDay.now()) return false;
+    else if(calculateFromString(timeFromDb).first > 0) {
+      if(calculateFromString(timeFromDb).last > 0){
+
+      }
+    }
+    return true;
+  }
+
+  Map<dynamic,dynamic> isAfter(String time){
+    int hours = 0;
+    int minutes = 0;
+    TimeOfDay timeOfDb = TimeOfDay(hour: int.parse('${time.substring(10,12)}'), minute: int.parse('${time.substring(13,15)}'));
+    // db 2:05
+    // now 2 : 40
+    if((TimeOfDay.now().hour - timeOfDb.hour).isNegative){
+      return {bool :false, int : [hours ,minutes] };
+      // var res = hours - timeOfDb.hour;
+      // res += TimeOfDay.now().hour;
+      // hours = res;
+    }else{
+      hours = TimeOfDay.now().hour - timeOfDb.hour;
+      //hours = 0
+      if((TimeOfDay.now().minute - timeOfDb.minute).isNegative){
+        hours -=  1;
+        if((TimeOfDay.now().hour - timeOfDb.hour).isNegative) return {bool :false, int : [hours ,minutes] };
+        var min = 60;
+        var res = min - timeOfDb.minute;
+        res += TimeOfDay.now().minute;
+        if(res >= min){
+          hours += 1;
+          minutes -= min;
+        }
+        minutes = res;
+        return {bool :true, int : [hours ,minutes] };
+      }else{
+        minutes = TimeOfDay.now().minute - timeOfDb.minute;
+        if(minutes >= 60){
+          hours += 1;
+          minutes -= 60;
+        }
+        return {bool :true, int : [hours ,minutes] };
+      }
+    }
+  }
+
 }

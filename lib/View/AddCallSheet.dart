@@ -1,9 +1,9 @@
 import 'package:contacts_service/contacts_service.dart';
 import 'package:fake_call/Services/TimeCalculator.dart';
-import 'package:fake_call/UI/Home.dart';
+import 'package:fake_call/UI/Home/Home.dart';
 import 'package:fake_call/View/ContactInfoAlert.dart';
 import 'package:fake_call/database/database.dart';
-import 'package:fake_call/model/ListCallModel.dart';
+import 'package:fake_call/model/DataBaseModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -40,28 +40,31 @@ class _AddCallSheetState extends State<AddCallSheet> {
   void _setCall() async{
     if(_value == 1){
       if(_contact!=null){
-        setCallOnDataBase(ListCallModel(
-            _contact.displayName,
-            _contact.phones.first.value,
-            selectedTime.toString())).then((result){
-          Navigator.of(context).pop(true);
-        });
+        // setCallOnDataBase(
+        //     DataBaseModel(
+        //     _contact.displayName,
+        //     _contact.phones.first.value,
+        //       TimeOfDay.now().toString()
+        //     )).then((result){
+        //   Navigator.of(context).pop(true);
+        // });
       }else{
         setState(() {
           valueOneColor = Colors.red;
         });
       }
     }else if(_phoneController.text.isNotEmpty){
-      setCallOnDataBase(ListCallModel(
-          _phoneController.text.toString(),
-          _phoneController.text.toString(),
-          selectedTime.toString())).then((result){
-        Navigator.of(context).pop(true);
-      });
+      // setCallOnDataBase(DataBaseModel(
+      //     _phoneController.text.toString(),
+      //     _phoneController.text.toString(),
+      //     TimeOfDay.now().toString()
+      // )).then((result){
+      //   Navigator.of(context).pop(true);
+      // });
     }
   }
 
-  Future setCallOnDataBase(ListCallModel call) async {
+  Future setCallOnDataBase(DataBaseModel call) async {
     await DatabaseHelper().db;
     var dbHelper =  DatabaseHelper();
     await dbHelper.saveCall(call);

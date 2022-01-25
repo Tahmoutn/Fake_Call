@@ -92,13 +92,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.4"
-  facebook_audience_network:
-    dependency: "direct main"
+  fading_edge_scrollview:
+    dependency: transitive
     description:
-      name: facebook_audience_network
+      name: fading_edge_scrollview
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0-nullsafety.0"
+    version: "2.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -125,6 +125,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_applovin_max:
+    dependency: "direct main"
+    description:
+      name: flutter_applovin_max
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.1"
   flutter_local_notifications:
     dependency: "direct main"
     description:
@@ -198,6 +205,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
+  jiffy:
+    dependency: "direct main"
+    description:
+      name: jiffy
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.1.0"
   js:
     dependency: transitive
     description:
@@ -205,6 +226,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.3"
+  marquee:
+    dependency: "direct main"
+    description:
+      name: marquee
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0"
   matcher:
     dependency: transitive
     description:
