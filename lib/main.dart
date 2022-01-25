@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_applovin_max/flutter_applovin_max.dart';
 import 'package:provider/provider.dart';
 
-const String testDevice = "0678FAC4D811712233442CD6430E5A76";
+const String testDevice = "TestId";
 final FlutterCallkeep callKeep = FlutterCallkeep();
 
 void main() async{
