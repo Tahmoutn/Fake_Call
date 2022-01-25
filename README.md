@@ -1,4 +1,4 @@
-# fake_call
+# Fake Call
 
 The fake calls application helps you to receive calls on your phone for real, as the application allows you to make instant calls, that is, receive incoming calls at the moment, and there is also the feature of setting scheduled calls by setting times to receive fake calls.
 The application uses:
@@ -18,4 +18,4 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-# fake_call
+# Fake Call
