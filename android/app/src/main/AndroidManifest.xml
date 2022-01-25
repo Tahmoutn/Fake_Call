@@ -96,7 +96,7 @@
         </activity>
 
         <meta-data android:name="applovin.sdk.key"
-            android:value="VSfl2H5XcbCgCZHyV0InStxcc64PxvTomoxqByzTOWkveqkFLppAG8EGwkX7tKZpNuhKH5KoCJwId85LrWpq_5"/>
+            android:value="YOUR_APPLOVIN_SDK_KEY"/>
 
         <service
             android:name="io.wazo.callkeep.VoiceConnectionService"
