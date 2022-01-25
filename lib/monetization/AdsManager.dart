@@ -52,35 +52,35 @@ class AdsManager {
 
 
 String mainBannerAdUnitId() {
-  return 'be884c66244bc5f8';
+  return 'AD_UNIT_ID';
 }
 
 String historiesBannerAdUnitId() {
-  return 'be884c66244bc5f8';
+  return 'AD_UNIT_ID';
 }
 
 String momentBannerAdUnitId(){
-  return 'be884c66244bc5f8';
+  return 'AD_UNIT_ID';
 }
 
 String interstitialAdUnitId() {
-  return '610f3fc458d89381';
+  return 'AD_UNIT_ID';
 }
 
 String videoInterstitialAdUnitId() {
-  return '1866713713479068_1867242503426189';
+  return 'AD_UNIT_ID';
 }
 
 // Testing ad units for Admob only ...
 
 String testBannerAdUnitId() {
-  return 'ca-app-pub-3940256099942544/6300978111';
+  return 'AD_UNIT_ID';
 }
 
 String testInterstitialAdUnitId() {
-  return 'ca-app-pub-3940256099942544/1033173712';
+  return 'AD_UNIT_ID';
 }
 
 String testVideoInterstitialAdUnitId() {
-  return 'ca-app-pub-3940256099942544/8691691433';
+  return 'AD_UNIT_ID';
 }
